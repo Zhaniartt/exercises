@@ -10,6 +10,8 @@ import {Movies} from '../models/movies'
 export class MoviesComponent implements OnInit {
   popular: any;
   theaters: any;
+  kids: any;
+  drama: any;
   constructor(private moviesService: MoviesService) { }
 
   ngOnInit(): void {
@@ -23,10 +25,21 @@ export class MoviesComponent implements OnInit {
         .getTheaters()
         .subscribe(data=>{
           this.theaters = data
-          console.log(this.theaters)
         })    
 
-       
+       this.moviesService
+           .getKids()
+           .subscribe(data=> {
+             this.kids = data
+             console.log(this.kids);
+             
+           })
+       this.moviesService
+           .getDrama()
+           .subscribe(data=>{
+             this.drama = data
+
+           })    
   }
   
 }
